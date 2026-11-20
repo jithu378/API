@@ -3,23 +3,34 @@ const app = express();
 
 require("dotenv").config();
 
+// Imports
+const cookieParser = require("cookie-parser");
+const connect = require("./config");
+const errorHandler = require("./middleware/errorHandler");
+
 // Configuration
-const port = process.env.PORT // hide port number
+const port = process.env.PORT;
 
 // Database Connection
-const connect = require("./config")
 connect();
 
-//Middlewares
-app.use(express.json()) // converting data into json
+// Middlewares
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
-app.use("/api/task", require("./router/taskRouter")) // accesing router
-app.use("/api/user",require("./router/userRouter"))
+// Static Files
+app.use("/uploads", express.static("uploads"));
+
+// Routes
+app.use("/api/task", require("./router/taskRouter"));
+app.use("/api/book",require("./router/bookRouter"))
+app.use("/api/user", require("./router/userRouter"));
 
 // Error Handling Middleware
-const errorHandler = require("./middleware/errorHandler");
-app.use(errorHandler)
+app.use(errorHandler);
 
-app.listen(port, () =>{
-    console.log("server is running")
-})
+// Server
+app.listen(port, () => {
+    console.log("Server is running");
+});
