@@ -13,7 +13,7 @@ const AddBook=async (req,res)=>{
     res.status(201).json(data)
 }
 
-const GetBooks = async (req, res) => {
+const getBooks = async (req, res) => {
     const data = await Book.find();
     res.status(200).json(data);
 };
@@ -33,4 +33,4 @@ const getOneBook = async (req, res) => {
     res.status(200).json(data);
 };
 
-module.exports={AddBook,getOneBook,GetBooks}
+module.exports={AddBook,getOneBook,getBooks}
