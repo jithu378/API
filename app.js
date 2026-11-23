@@ -23,7 +23,7 @@ app.use("/uploads", express.static("uploads"));
 
 // Routes
 app.use("/api/task", require("./router/taskRouter.js"));
-// app.use("/api/user", require("./router/userRouter.js"));
+app.use("/api/user", require("./router/userRouter.js"));
 // app.use("/api/book", require("./router/bookRouter.js"));
 
 // Error Handling
