@@ -29,15 +29,15 @@ let register=(async(req,res)=>{
 
 // LOGIN
 let login=(async(req,res)=>{
-    let{email,pass}=req.body
+    let{useremail,userpassword }=req.body
     // Check whether email and password are provided
-    if(!email || !pass){
+    if(!useremail || !userpassword ){
         let error=new Error("All field are requied")
         error.statusCode=400
         throw error
     }
     // Find the user in MongoDB using the provided email
-    let User=await user.findOne({useremail:email})
+    let User=await user.findOne({useremail:useremail})
     // Check whether the user exists
     if(!User){
         let error=new Error("Invalied email !!")
@@ -45,7 +45,7 @@ let login=(async(req,res)=>{
         throw error
     }
     // Compare the entered password with the hashed password in MongoDB
-    let match=await bcrypt.compare(pass,User.userpassword)
+    let match=await bcrypt.compare(userpassword ,User.userpassword)
     // Check whether the passwords match
     if(!match){
         let error=new Error("Invalied password !!")
