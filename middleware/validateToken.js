@@ -25,7 +25,7 @@ const validate=(req,res,next)=>{
     // Verify the token using the access token secret
     jwt.verify(
         token,
-        process.env.ACCESSTOK,
+        process.env.ACCESS_TOKEN,
         // Callback receives either an error or decoded token data
         (err,decodes)=>{
             // If verification fails (invalid or expired token)
