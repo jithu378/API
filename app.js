@@ -1,6 +1,6 @@
 // Imports
 const express = require("express");
-// const cookieParser = require("cookie-parser");
+const cookieParser = require("cookie-parser");
 const errorHandler = require("./middleware/errorHandler.js");
 const connect = require("./config.js");
 
@@ -14,12 +14,12 @@ const Port = process.env.PORT;
 connect();
 
 // Middlewares
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
-// app.use(cookieParser());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // Static Files
-// app.use("/uploads", express.static("uploads"));
+app.use("/uploads", express.static("uploads"));
 
 // Routes
 app.use("/api/task", require("./router/taskRouter.js"));
