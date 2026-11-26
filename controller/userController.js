@@ -22,7 +22,9 @@ let register=(async(req,res)=>{
     const hashpass=await bcrypt.hash(userpassword,10)
     // Create a new user document in MongoDB
     const userdata=await user.create({
-        username:username,useremail:useremail,userpassword:hashpass
+        username:username,
+        useremail:useremail,
+        userpassword:hashpass
     })
     res.status(201).json({userdata})
 })
@@ -40,7 +42,7 @@ let login=(async(req,res)=>{
     let User=await user.findOne({useremail:useremail})
     // Check whether the user exists
     if(!User){
-        let error=new Error("Invalied email !!")
+        let error=new Error("Invalid email !!")
         error.statusCode=400
         throw error
     }
@@ -48,7 +50,7 @@ let login=(async(req,res)=>{
     let match=await bcrypt.compare(userpassword ,User.userpassword)
     // Check whether the passwords match
     if(!match){
-        let error=new Error("Invalied password !!")
+        let error=new Error("Invalid password !!")
         error.statusCode=400
         throw error
     }

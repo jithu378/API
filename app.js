@@ -11,6 +11,8 @@ const app = express();
 const Port = process.env.PORT;
 
 // Database Connection
+const dns = require("dns");
+dns.setServers(["8.8.8.8", "1.1.1.1"]);
 connect();
 
 // Middlewares
